@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Commenhers</title>
+  <meta name="description" content="Your Commenhers order has been received.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="site-logo"><img src="assets/images/logo-brand.png" alt="Commenhers"></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li class="nav-item-dropdown">
+              <a href="corporate-upcycling.html">For Corporates</a>
+              <div class="dropdown-menu">
+                <ul>
+                  <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+                  <li><a href="workshop.html">Workshop</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a href="shop.html" class="btn-shop">Shop</a>
+          <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+        </div>
+        <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav-drawer">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="social-impact.html">Social Impact</a></li>
+      <li><a href="corporate-upcycling.html">For Corporates</a></li>
+      <div class="mobile-submenu">
+        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+        <li><a href="workshop.html">Workshop</a></li>
+      </div>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <section class="confirmation-section">
+    <div class="container">
+      <div class="confirmation-box" id="confirmation-box">
+        <div class="confirmation-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <h1>Order Received!</h1>
+        <p class="order-id" id="order-id-display"></p>
+        <div class="confirmation-items" id="confirmation-items"></div>
+        <p class="confirmation-note">
+          Thank you for your order. We'll send payment instructions to your email shortly.<br>
+          Questions? Email <a href="mailto:commenhers@gmail.com" style="color:var(--color-primary);">commenhers@gmail.com</a>
+          or WhatsApp <a href="https://wa.me/6591070410" style="color:var(--color-primary);">+65 9107 0410</a>.
+        </p>
+        <a href="shop.html" class="btn-checkout" style="margin-top:24px;display:inline-block;">Back to Shop</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="assets/images/logo-brand.png" alt="Commenhers">
+          <p data-cms-text="global.footer_tagline">Making upcycling a lifestyle for all. Ethically sourced. Handsewn with love.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/commenhers" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/commenhers/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Commenhers &copy; 2026. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get('order');
+
+      const savedCart = getCart();
+
+      document.getElementById('order-id-display').textContent = orderId
+        ? `Order #${orderId}`
+        : 'Thank you for your purchase!';
+
+      const itemsContainer = document.getElementById('confirmation-items');
+      if (savedCart.length) {
+        const total = savedCart.reduce((sum, i) => sum + i.price * i.qty, 0);
+        itemsContainer.innerHTML = savedCart.map(item => `
+          <div class="confirmation-item">
+            <span>${item.name} × ${item.qty}</span>
+            <span>$${(item.price * item.qty).toFixed(2)}</span>
+          </div>`).join('') +
+          `<div class="confirmation-total">
+            <span>Total</span>
+            <span>$${total.toFixed(2)}</span>
+          </div>`;
+      } else {
+        itemsContainer.innerHTML = '<p style="color:var(--color-muted);font-size:0.9rem;">Your order has been saved.</p>';
+      }
+
+      clearCart();
+    });
+  </script>
+</body>
+</html>

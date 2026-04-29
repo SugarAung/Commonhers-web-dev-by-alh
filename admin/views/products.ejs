@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Commenhers Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Lato, sans-serif; background: #f4f6f4; color: #333; }
+    .topbar { background: #2e7d32; color: #fff; padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar h1 { font-size: 1.1rem; }
+    .topbar a { color: #fff; font-size: 0.85rem; text-decoration: none; opacity: .8; }
+    .topbar a:hover { opacity: 1; }
+    .main { max-width: 1100px; margin: 40px auto; padding: 0 24px; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    h2 { font-size: 1.4rem; color: #2e7d32; }
+    .btn { display: inline-block; padding: 9px 18px; border-radius: 4px; font-size: 0.9rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
+    .btn-green { background: #2e7d32; color: #fff; }
+    .btn-green:hover { background: #1b5e20; }
+    .btn-sm { padding: 5px 12px; font-size: 0.8rem; }
+    .btn-outline { background: #fff; border: 1px solid #ccc; color: #333; }
+    .btn-outline:hover { border-color: #2e7d32; color: #2e7d32; }
+    .btn-danger { background: #fff; border: 1px solid #e53935; color: #e53935; }
+    .btn-danger:hover { background: #e53935; color: #fff; }
+    table { width: 100%; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); border-collapse: collapse; overflow: hidden; }
+    th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+    th { background: #f8f8f8; font-weight: 700; color: #555; font-size: 0.8rem; text-transform: uppercase; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: none; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; }
+    .badge-out { background: #fdecea; color: #c62828; }
+    .badge-in { background: #e8f5e9; color: #2e7d32; }
+    .actions { display: flex; gap: 8px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Commenhers Admin</h1>
+    <nav style="display:flex;gap:20px;align-items:center;">
+      <a href="/admin/dashboard">Dashboard</a>
+      <a href="/admin/products">Products</a>
+      <a href="/admin/orders">Orders</a>
+      <a href="/admin/content">Content</a>
+      <a href="/" target="_blank">View Site ↗</a>
+      <a href="/admin/logout">Logout</a>
+    </nav>
+  </div>
+  <div class="main">
+    <div class="page-header">
+      <h2>Products (<%= products.length %>)</h2>
+      <a href="/admin/products/new" class="btn btn-green">+ Add Product</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+        <tr>
+          <td><strong><%= p.name %></strong></td>
+          <td><%= p.category %></td>
+          <td>$<%= Number(p.price).toFixed(2) %></td>
+          <td>
+            <% if (p.soldOut) { %>
+              <span class="badge badge-out">Sold Out</span>
+            <% } else { %>
+              <span class="badge badge-in">In Stock</span>
+            <% } %>
+          </td>
+          <td>
+            <div class="actions">
+              <a href="/admin/products/<%= p.id %>/edit" class="btn btn-sm btn-outline">Edit</a>
+              <form method="POST" action="/admin/products/<%= p.id %>/delete" style="display:inline;" onsubmit="return confirm('Delete <%= p.name %>?')">
+                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+        <% if (!products.length) { %>
+        <tr><td colspan="5" style="text-align:center;color:#999;padding:32px;">No products yet. <a href="/admin/products/new">Add one.</a></td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

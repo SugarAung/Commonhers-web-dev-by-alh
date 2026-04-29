@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Content — Commenhers Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Lato, sans-serif; background: #f4f6f4; color: #333; }
+    .topbar { background: #2e7d32; color: #fff; padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar h1 { font-size: 1.1rem; }
+    .topbar nav { display: flex; gap: 20px; align-items: center; }
+    .topbar a { color: #fff; font-size: 0.85rem; text-decoration: none; opacity: .8; }
+    .topbar a:hover { opacity: 1; }
+    .main { max-width: 900px; margin: 40px auto; padding: 0 24px 60px; }
+    h2 { font-size: 1.4rem; color: #2e7d32; margin-bottom: 6px; }
+    .page-sub { font-size: 0.88rem; color: #888; margin-bottom: 28px; }
+    .saved-banner { background: #e8f5e9; border: 1px solid #a5d6a7; color: #2e7d32; border-radius: 6px; padding: 10px 16px; margin-bottom: 24px; font-size: 0.9rem; }
+    /* Tabs */
+    .tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 24px; border-bottom: 2px solid #e0e0e0; padding-bottom: 0; }
+    .tab-btn { background: none; border: none; padding: 10px 18px; font-size: 0.9rem; font-weight: 700; color: #666; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; border-radius: 4px 4px 0 0; transition: color .15s; }
+    .tab-btn:hover { color: #2e7d32; }
+    .tab-btn.active { color: #2e7d32; border-bottom-color: #2e7d32; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    /* Form */
+    .section-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.07); padding: 28px 32px; margin-bottom: 20px; }
+    .section-card h3 { font-size: 1rem; color: #2e7d32; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+    .form-group { margin-bottom: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 5px; color: #444; text-transform: uppercase; letter-spacing: .3px; }
+    input[type="text"], input[type="url"], textarea { width: 100%; padding: 9px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.93rem; font-family: inherit; }
+    input:focus, textarea:focus { outline: none; border-color: #2e7d32; }
+    textarea { resize: vertical; min-height: 80px; }
+    .hint { font-size: 0.77rem; color: #999; margin-top: 4px; }
+    /* Image field */
+    .img-field { display: flex; align-items: flex-start; gap: 16px; }
+    .img-preview { width: 90px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; background: #f5f5f5; flex-shrink: 0; }
+    .img-preview-placeholder { width: 90px; height: 70px; border-radius: 4px; border: 1px dashed #ccc; background: #fafafa; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; color: #bbb; flex-shrink: 0; text-align: center; line-height: 1.3; }
+    .img-field-right { flex: 1; }
+    input[type="file"] { width: 100%; padding: 7px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem; }
+    /* Save bar */
+    .save-bar { position: sticky; bottom: 0; background: #fff; border-top: 1px solid #e0e0e0; padding: 16px 32px; display: flex; align-items: center; gap: 16px; box-shadow: 0 -2px 12px rgba(0,0,0,.06); }
+    .btn { display: inline-block; padding: 10px 24px; border-radius: 4px; font-size: 0.95rem; font-weight: 700; cursor: pointer; border: none; text-decoration: none; }
+    .btn-green { background: #2e7d32; color: #fff; }
+    .btn-green:hover { background: #1b5e20; }
+    .save-note { font-size: 0.82rem; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Commenhers Admin</h1>
+    <nav>
+      <a href="/admin/dashboard">Dashboard</a>
+      <a href="/admin/products">Products</a>
+      <a href="/admin/orders">Orders</a>
+      <a href="/admin/content" style="opacity:1;font-weight:700;">Content</a>
+      <a href="/" target="_blank">View Site ↗</a>
+      <a href="/admin/logout">Logout</a>
+    </nav>
+  </div>
+
+  <div class="main">
+    <h2>Site Content</h2>
+    <p class="page-sub">Edit text, images, and videos shown on the public website. Click Save when done.</p>
+
+    <% if (saved) { %>
+      <div class="saved-banner">✓ Content saved successfully.</div>
+    <% } %>
+
+    <form method="POST" action="/admin/content" enctype="multipart/form-data">
+
+      <div class="tabs">
+        <button type="button" class="tab-btn active" data-tab="global">Global</button>
+        <button type="button" class="tab-btn" data-tab="index">Home</button>
+        <button type="button" class="tab-btn" data-tab="about">About</button>
+        <button type="button" class="tab-btn" data-tab="social_impact">Social Impact</button>
+        <button type="button" class="tab-btn" data-tab="corporate">Corporate</button>
+        <button type="button" class="tab-btn" data-tab="workshop">Workshop</button>
+        <button type="button" class="tab-btn" data-tab="contact">Contact</button>
+        <button type="button" class="tab-btn" data-tab="shop">Shop</button>
+      </div>
+
+      <!-- GLOBAL -->
+      <div class="tab-panel active" id="tab-global">
+        <div class="section-card">
+          <h3>Footer & Social</h3>
+          <div class="form-group">
+            <label>Footer Tagline</label>
+            <input type="text" name="global_footer_tagline" value="<%= content.global && content.global.footer_tagline || '' %>">
+          </div>
+          <div class="form-row">
+            <div>
+              <label>Instagram URL</label>
+              <input type="url" name="global_footer_instagram" value="<%= content.global && content.global.footer_instagram || '' %>">
+            </div>
+            <div>
+              <label>LinkedIn URL</label>
+              <input type="url" name="global_footer_linkedin" value="<%= content.global && content.global.footer_linkedin || '' %>">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME -->
+      <div class="tab-panel" id="tab-index">
+        <div class="section-card">
+          <h3>Hero Slider</h3>
+          <div class="form-group">
+            <label>Slide 1 Text</label>
+            <textarea name="index_hero_slide1_title"><%= content.index && content.index.hero_slide1_title || '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Slide 2 Text</label>
+            <textarea name="index_hero_slide2_title"><%= content.index && content.index.hero_slide2_title || '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Slide 3 Text</label>
+            <textarea name="index_hero_slide3_title"><%= content.index && content.index.hero_slide3_title || '' %></textarea>
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Our Story</h3>
+          <div class="form-group">
+            <label>Story Body Text</label>
+            <textarea name="index_story_body" style="min-height:120px"><%= content.index && content.index.story_body || '' %></textarea>
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Section Images</h3>
+          <%
+            var indexImages = [
+              { field: 'index_commitments_image', label: 'Our Commitments Image', key: 'commitments_image' },
+              { field: 'index_impact_image', label: 'Impact Tracker Image', key: 'impact_image' },
+              { field: 'index_partners_image', label: 'Our Partners Image', key: 'partners_image' },
+              { field: 'index_whatwedo_card1_image', label: 'What We Do — Card 1 Image', key: 'whatwedo_card1_image' },
+              { field: 'index_whatwedo_card2_image', label: 'What We Do — Card 2 Image', key: 'whatwedo_card2_image' },
+            ];
+          %>
+          <% indexImages.forEach(function(img) { %>
+            <div class="form-group">
+              <label><%= img.label %></label>
+              <div class="img-field">
+                <% var src = content.index && content.index[img.key]; %>
+                <% if (src) { %>
+                  <img class="img-preview" src="/<%= src %>">
+                <% } else { %>
+                  <div class="img-preview-placeholder">No image</div>
+                <% } %>
+                <div class="img-field-right">
+                  <input type="file" name="<%= img.field %>" accept="image/*">
+                  <input type="hidden" name="<%= img.field %>" value="<%= src || '' %>">
+                  <p class="hint">Upload a new image to replace the current one.</p>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="tab-panel" id="tab-about">
+        <div class="section-card">
+          <h3>Page Hero</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="about_hero_title" value="<%= content.about && content.about.hero_title || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" name="about_hero_subtitle" value="<%= content.about && content.about.hero_subtitle || '' %>">
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Our Story</h3>
+          <div class="form-group">
+            <label>Story Body Text</label>
+            <textarea name="about_story_body" style="min-height:120px"><%= content.about && content.about.story_body || '' %></textarea>
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Section Images</h3>
+          <%
+            var aboutImages = [
+              { field: 'about_commitments_image', label: 'Our Commitments Image', key: 'commitments_image' },
+              { field: 'about_whatwedo_card1_image', label: 'What We Do — Card 1 Image', key: 'whatwedo_card1_image' },
+              { field: 'about_whatwedo_card2_image', label: 'What We Do — Card 2 Image', key: 'whatwedo_card2_image' },
+              { field: 'about_impact_image', label: 'Impact Tracker Image', key: 'impact_image' },
+              { field: 'about_partners_image', label: 'Our Partners Image', key: 'partners_image' },
+            ];
+          %>
+          <% aboutImages.forEach(function(img) { %>
+            <div class="form-group">
+              <label><%= img.label %></label>
+              <div class="img-field">
+                <% var src = content.about && content.about[img.key]; %>
+                <% if (src) { %>
+                  <img class="img-preview" src="/<%= src %>">
+                <% } else { %>
+                  <div class="img-preview-placeholder">No image</div>
+                <% } %>
+                <div class="img-field-right">
+                  <input type="file" name="<%= img.field %>" accept="image/*">
+                  <input type="hidden" name="<%= img.field %>" value="<%= src || '' %>">
+                  <p class="hint">Upload a new image to replace the current one.</p>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- SOCIAL IMPACT -->
+      <div class="tab-panel" id="tab-social_impact">
+        <div class="section-card">
+          <h3>Page Hero</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="social_impact_hero_title" value="<%= content.social_impact && content.social_impact.hero_title || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" name="social_impact_hero_subtitle" value="<%= content.social_impact && content.social_impact.hero_subtitle || '' %>">
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Testimonial</h3>
+          <div class="form-group">
+            <label>Testimonial Body</label>
+            <textarea name="social_impact_testimonial_body" style="min-height:120px"><%= content.social_impact && content.social_impact.testimonial_body || '' %></textarea>
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Section Images</h3>
+          <%
+            var siImages = [
+              { field: 'social_impact_esg_image', label: 'ESG Section Image', key: 'esg_image' },
+              { field: 'social_impact_beneficiaries_image', label: 'Local Beneficiaries Image', key: 'beneficiaries_image' },
+              { field: 'social_impact_testimonial_image', label: 'Testimonial / Fashion Show Image', key: 'testimonial_image' },
+            ];
+          %>
+          <% siImages.forEach(function(img) { %>
+            <div class="form-group">
+              <label><%= img.label %></label>
+              <div class="img-field">
+                <% var src = content.social_impact && content.social_impact[img.key]; %>
+                <% if (src) { %>
+                  <img class="img-preview" src="/<%= src %>">
+                <% } else { %>
+                  <div class="img-preview-placeholder">No image</div>
+                <% } %>
+                <div class="img-field-right">
+                  <input type="file" name="<%= img.field %>" accept="image/*">
+                  <input type="hidden" name="<%= img.field %>" value="<%= src || '' %>">
+                  <p class="hint">Upload a new image to replace the current one.</p>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- CORPORATE -->
+      <div class="tab-panel" id="tab-corporate">
+        <div class="section-card">
+          <h3>Page Hero</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="corporate_hero_title" value="<%= content.corporate && content.corporate.hero_title || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <textarea name="corporate_hero_subtitle"><%= content.corporate && content.corporate.hero_subtitle || '' %></textarea>
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Case Study Images</h3>
+          <%
+            var corpImages = [
+              { field: 'corporate_casestudy1_image', label: 'Case Study 1 — NUS Banner', key: 'casestudy1_image' },
+              { field: 'corporate_casestudy2_image', label: 'Case Study 2 — Decathlon', key: 'casestudy2_image' },
+              { field: 'corporate_casestudy3_image', label: 'Case Study 3 — Singapore Polytechnic', key: 'casestudy3_image' },
+              { field: 'corporate_casestudy4_image', label: 'Case Study 4 — Gain City', key: 'casestudy4_image' },
+              { field: 'corporate_casestudy5_image', label: 'Case Study 5 — NUSC', key: 'casestudy5_image' },
+              { field: 'corporate_collab_image', label: 'Decathlon Collaboration Image', key: 'collab_image' },
+            ];
+          %>
+          <% corpImages.forEach(function(img) { %>
+            <div class="form-group">
+              <label><%= img.label %></label>
+              <div class="img-field">
+                <% var src = content.corporate && content.corporate[img.key]; %>
+                <% if (src) { %>
+                  <img class="img-preview" src="/<%= src %>">
+                <% } else { %>
+                  <div class="img-preview-placeholder">No image</div>
+                <% } %>
+                <div class="img-field-right">
+                  <input type="file" name="<%= img.field %>" accept="image/*">
+                  <input type="hidden" name="<%= img.field %>" value="<%= src || '' %>">
+                  <p class="hint">Upload a new image to replace the current one.</p>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- WORKSHOP -->
+      <div class="tab-panel" id="tab-workshop">
+        <div class="section-card">
+          <h3>Page Hero</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="workshop_hero_title" value="<%= content.workshop && content.workshop.hero_title || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <textarea name="workshop_hero_subtitle"><%= content.workshop && content.workshop.hero_subtitle || '' %></textarea>
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Videos — "Watch Us in Action"</h3>
+          <p class="hint" style="margin-bottom:20px">Paste a YouTube or Vimeo URL. Leave blank to show the placeholder.</p>
+          <% for (var v = 1; v <= 3; v++) { %>
+            <div class="form-row">
+              <div>
+                <label>Video <%= v %> Title</label>
+                <input type="text" name="workshop_video<%= v %>_title" value="<%= content.workshop && content.workshop['video' + v + '_title'] || '' %>">
+              </div>
+              <div>
+                <label>Video <%= v %> URL</label>
+                <input type="url" name="workshop_video<%= v %>_url" value="<%= content.workshop && content.workshop['video' + v + '_url'] || '' %>" placeholder="https://www.youtube.com/watch?v=...">
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="tab-panel" id="tab-contact">
+        <div class="section-card">
+          <h3>Page Hero</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="contact_hero_title" value="<%= content.contact && content.contact.hero_title || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" name="contact_hero_subtitle" value="<%= content.contact && content.contact.hero_subtitle || '' %>">
+          </div>
+        </div>
+        <div class="section-card">
+          <h3>Contact Details</h3>
+          <div class="form-row">
+            <div>
+              <label>Email</label>
+              <input type="text" name="contact_email" value="<%= content.contact && content.contact.email || '' %>">
+            </div>
+            <div>
+              <label>WhatsApp Number (display)</label>
+              <input type="text" name="contact_whatsapp" value="<%= content.contact && content.contact.whatsapp || '' %>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Link</label>
+            <input type="url" name="contact_whatsapp_link" value="<%= content.contact && content.contact.whatsapp_link || '' %>" placeholder="https://wa.me/6591070410">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="contact_address" value="<%= content.contact && content.contact.address || '' %>">
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOP -->
+      <div class="tab-panel" id="tab-shop">
+        <div class="section-card">
+          <h3>Page Hero</h3>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="shop_hero_title" value="<%= content.shop && content.shop.hero_title || '' %>">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" name="shop_hero_subtitle" value="<%= content.shop && content.shop.hero_subtitle || '' %>">
+          </div>
+        </div>
+      </div>
+
+      <div class="save-bar">
+        <button type="submit" class="btn btn-green">Save All Changes</button>
+        <span class="save-note">Changes apply to the live site immediately after saving.</span>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    var tabs = document.querySelectorAll('.tab-btn');
+    var panels = document.querySelectorAll('.tab-panel');
+    tabs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        tabs.forEach(function(b) { b.classList.remove('active'); });
+        panels.forEach(function(p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

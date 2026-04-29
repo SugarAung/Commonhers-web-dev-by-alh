@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Commenhers Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Lato, sans-serif; background: #f4f6f4; color: #333; }
+    .topbar { background: #2e7d32; color: #fff; padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar h1 { font-size: 1.1rem; }
+    .topbar nav { display: flex; gap: 20px; align-items: center; }
+    .topbar a { color: #fff; font-size: 0.85rem; text-decoration: none; opacity: .8; }
+    .topbar a:hover { opacity: 1; }
+    .main { max-width: 960px; margin: 40px auto; padding: 0 24px; }
+    h2 { font-size: 1.4rem; margin-bottom: 24px; color: #2e7d32; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.08); padding: 28px 24px; text-decoration: none; color: inherit; transition: box-shadow .2s; }
+    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+    .card-num { font-size: 2rem; font-weight: 700; color: #2e7d32; }
+    .card-label { font-size: 0.9rem; color: #666; margin-top: 4px; }
+    .card-sub { font-size: 0.78rem; color: #aaa; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Commenhers Admin</h1>
+    <nav>
+      <a href="/admin/dashboard">Dashboard</a>
+      <a href="/admin/products">Products</a>
+      <a href="/admin/orders">Orders</a>
+      <a href="/admin/content">Content</a>
+      <a href="/" target="_blank">View Site ↗</a>
+      <a href="/admin/logout">Logout</a>
+    </nav>
+  </div>
+  <div class="main">
+    <h2>Dashboard</h2>
+    <div class="cards">
+      <a class="card" href="/admin/products">
+        <div class="card-num"><%= products.length %></div>
+        <div class="card-label">Products</div>
+      </a>
+      <a class="card" href="/admin/orders">
+        <div class="card-num"><%= orders.length %></div>
+        <div class="card-label">Orders</div>
+        <div class="card-sub"><%= orders.filter(o => o.status === 'pending').length %> pending</div>
+      </a>
+      <div class="card">
+        <div class="card-num"><%= todayVisits %></div>
+        <div class="card-label">Visitors Today</div>
+        <div class="card-sub"><%= totalVisits %> all time</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

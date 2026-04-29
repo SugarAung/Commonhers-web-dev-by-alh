@@ -1,0 +1,58 @@
+[
+  {
+    "id": "baguette-bag",
+    "name": "Baguette Bag",
+    "price": 37.90,
+    "image": "",
+    "soldOut": true,
+    "category": "bags"
+  },
+  {
+    "id": "bohemian-bag",
+    "name": "Bohemian Bag",
+    "price": 42.00,
+    "image": "",
+    "soldOut": true,
+    "category": "bags"
+  },
+  {
+    "id": "laptop-sleeve",
+    "name": "Laptop Sleeve",
+    "price": 40.00,
+    "image": "",
+    "soldOut": true,
+    "category": "accessories"
+  },
+  {
+    "id": "organza-bag",
+    "name": "Organza Bag",
+    "price": 42.00,
+    "image": "",
+    "soldOut": false,
+    "category": "bags"
+  },
+  {
+    "id": "sew-crazy-workshop",
+    "name": "Sew Crazy Workshop",
+    "price": 36.00,
+    "image": "",
+    "soldOut": false,
+    "category": "workshops"
+  },
+  {
+    "id": "smart-watches-wood",
+    "name": "Smart Watches Wood Edition",
+    "price": 599.00,
+    "image": "",
+    "soldOut": false,
+    "category": "accessories"
+  },
+  {
+    "id": "tote-bag",
+    "name": "Tote Bag",
+    "price": 40.00,
+    "image": "assets/images/product-tote-bag.jpg",
+    "soldOut": false,
+    "category": "bags"
+  }
+]

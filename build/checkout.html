@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Commenhers</title>
+  <meta name="description" content="Complete your Commenhers order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    #card-element {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+      margin-bottom: 6px;
+    }
+    #card-errors { color: #e53935; font-size: 0.88rem; min-height: 20px; margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="site-logo"><img src="assets/images/logo-brand.png" alt="Commenhers"></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li class="nav-item-dropdown">
+              <a href="corporate-upcycling.html">For Corporates</a>
+              <div class="dropdown-menu">
+                <ul>
+                  <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+                  <li><a href="workshop.html">Workshop</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a href="shop.html" class="btn-shop">Shop</a>
+          <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+        </div>
+        <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav-drawer">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="social-impact.html">Social Impact</a></li>
+      <li><a href="corporate-upcycling.html">For Corporates</a></li>
+      <div class="mobile-submenu">
+        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+        <li><a href="workshop.html">Workshop</a></li>
+      </div>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Checkout</h1>
+      <p>You're almost there. Fill in your details below.</p>
+    </div>
+  </section>
+
+  <section class="cart-section">
+    <div class="container">
+      <div id="checkout-content"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="assets/images/logo-brand.png" alt="Commenhers">
+          <p data-cms-text="global.footer_tagline">Making upcycling a lifestyle for all. Ethically sourced. Handsewn with love.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/commenhers" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/commenhers/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Commenhers &copy; 2026. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const cart = getCart();
+      const container = document.getElementById('checkout-content');
+
+      if (!cart.length) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <i class="fas fa-shopping-cart"></i>
+            <h2>Your cart is empty</h2>
+            <p>Add items to your cart before checking out.</p>
+            <a href="shop.html" class="btn-checkout">Go to Shop</a>
+          </div>`;
+        return;
+      }
+
+      const total = getCartTotal();
+      const summaryItems = cart.map(item => `
+        <div class="summary-item">
+          ${item.image
+            ? `<img src="${item.image}" alt="${item.name}" class="summary-thumb">`
+            : `<div class="summary-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--color-bg-light);font-size:1.2rem;color:var(--color-accent);"><i class="fas fa-shopping-bag"></i></div>`}
+          <div class="summary-item-info">
+            <strong>${item.name}</strong>
+            <span>Qty: ${item.qty}</span>
+          </div>
+          <span class="summary-item-price">$${(item.price * item.qty).toFixed(2)}</span>
+        </div>`).join('');
+
+      container.innerHTML = `
+        <div class="checkout-layout">
+          <div class="checkout-form-section">
+            <h2>Billing Details</h2>
+            <form class="checkout-form" id="checkout-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Full Name <span class="req">*</span></label>
+                  <input type="text" name="name" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                  <label>Email <span class="req">*</span></label>
+                  <input type="email" name="email" required placeholder="jane@example.com">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input type="tel" name="phone" placeholder="+65 9000 0000">
+                </div>
+                <div class="form-group">
+                  <label>Address <span class="req">*</span></label>
+                  <input type="text" name="address" required placeholder="Block / Street, Unit, Postal Code">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Order Notes</label>
+                <textarea name="notes" placeholder="Any special instructions for your order…"></textarea>
+              </div>
+
+              <h2 style="margin-top:24px;">Payment</h2>
+              <div id="card-element"></div>
+              <div id="card-errors" role="alert"></div>
+
+              <button type="submit" class="btn-checkout" id="submit-btn" style="width:100%;">Pay Now →</button>
+              <p class="form-status-checkout" id="checkout-status"></p>
+            </form>
+          </div>
+
+          <div class="checkout-summary-section">
+            <div class="order-summary-box">
+              <h2>Order Summary</h2>
+              ${summaryItems}
+              <hr class="summary-divider">
+              <div class="summary-total-row">
+                <span>Total</span>
+                <span>$${total.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+      // Init Stripe
+      const configRes = await fetch('/api/stripe-config');
+      const { publishableKey } = await configRes.json();
+      const stripe = Stripe(publishableKey);
+      const elements = stripe.elements();
+      const cardElement = elements.create('card', {
+        style: {
+          base: { fontSize: '16px', color: '#32325d', '::placeholder': { color: '#aab7c4' } }
+        }
+      });
+      cardElement.mount('#card-element');
+      cardElement.on('change', ({ error }) => {
+        document.getElementById('card-errors').textContent = error ? error.message : '';
+      });
+
+      document.getElementById('checkout-form').addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const status = document.getElementById('checkout-status');
+        const data = new FormData(e.target);
+
+        btn.disabled = true;
+        btn.textContent = 'Processing…';
+        status.textContent = '';
+        status.className = 'form-status-checkout';
+
+        try {
+          const piRes = await fetch('/api/create-payment-intent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: getCartTotal() })
+          });
+          const { clientSecret, error: piError } = await piRes.json();
+          if (piError) throw new Error(piError);
+
+          const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: data.get('name'),
+                email: data.get('email'),
+                phone: data.get('phone') || undefined,
+                address: { line1: data.get('address') }
+              }
+            }
+          });
+          if (confirmError) throw new Error(confirmError.message);
+
+          const orderRes = await fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: data.get('name'),
+              email: data.get('email'),
+              phone: data.get('phone'),
+              address: data.get('address'),
+              notes: data.get('notes'),
+              items: getCart(),
+              total: getCartTotal(),
+              paymentIntentId: paymentIntent.id
+            })
+          });
+          const result = await orderRes.json();
+          if (!orderRes.ok) throw new Error(result.error || 'Order failed');
+          window.location.href = `confirmation.html?order=${result.orderId}`;
+        } catch (err) {
+          status.textContent = err.message || 'Payment failed. Please try again.';
+          status.className = 'form-status-checkout error';
+          btn.disabled = false;
+          btn.textContent = 'Pay Now →';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

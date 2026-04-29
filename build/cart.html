@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Commenhers</title>
+  <meta name="description" content="Your Commenhers shopping cart.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="site-logo"><img src="assets/images/logo-brand.png" alt="Commenhers"></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li class="nav-item-dropdown">
+              <a href="corporate-upcycling.html">For Corporates</a>
+              <div class="dropdown-menu">
+                <ul>
+                  <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+                  <li><a href="workshop.html">Workshop</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a href="shop.html" class="btn-shop">Shop</a>
+          <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+        </div>
+        <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav-drawer">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="social-impact.html">Social Impact</a></li>
+      <li><a href="corporate-upcycling.html">For Corporates</a></li>
+      <div class="mobile-submenu">
+        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+        <li><a href="workshop.html">Workshop</a></li>
+      </div>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Your Cart</h1>
+      <p>Review your items before checkout.</p>
+    </div>
+  </section>
+
+  <section class="cart-section">
+    <div class="container">
+      <div id="cart-content"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="assets/images/logo-brand.png" alt="Commenhers">
+          <p data-cms-text="global.footer_tagline">Making upcycling a lifestyle for all. Ethically sourced. Handsewn with love.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/commenhers" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/commenhers/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Commenhers &copy; 2026. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+    });
+
+    function renderCart() {
+      const cart = getCart();
+      const container = document.getElementById('cart-content');
+
+      if (!cart.length) {
+        container.innerHTML = `
+          <div class="cart-empty">
+            <i class="fas fa-shopping-cart"></i>
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added anything yet.</p>
+            <a href="shop.html" class="btn-checkout">Continue Shopping</a>
+          </div>`;
+        return;
+      }
+
+      const rows = cart.map(item => `
+        <tr>
+          <td>
+            <div class="cart-product-cell">
+              ${item.image
+                ? `<img src="${item.image}" alt="${item.name}" class="cart-thumb">`
+                : `<div class="cart-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--color-bg-light);font-size:1.5rem;color:var(--color-accent);"><i class="fas fa-shopping-bag"></i></div>`}
+              <span class="cart-product-name">${item.name}</span>
+            </div>
+          </td>
+          <td>$${item.price.toFixed(2)}</td>
+          <td>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty - 1})">−</button>
+              <span class="qty-num">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty + 1})">+</button>
+            </div>
+          </td>
+          <td class="col-total">$${(item.price * item.qty).toFixed(2)}</td>
+          <td>
+            <button class="btn-remove" onclick="deleteItem('${item.id}')" aria-label="Remove ${item.name}">
+              <i class="fas fa-times"></i>
+            </button>
+          </td>
+        </tr>`).join('');
+
+      const subtotal = getCartTotal();
+
+      container.innerHTML = `
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th class="col-total">Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div class="cart-footer">
+          <a href="shop.html" class="btn-outline">← Continue Shopping</a>
+          <div class="cart-totals">
+            <div class="cart-total-row">
+              <span>Subtotal</span>
+              <span class="total-val">$${subtotal.toFixed(2)}</span>
+            </div>
+            <a href="checkout.html" class="btn-checkout">Proceed to Checkout →</a>
+          </div>
+        </div>`;
+    }
+
+    function changeQty(id, newQty) {
+      if (newQty < 1) {
+        deleteItem(id);
+        return;
+      }
+      updateQty(id, newQty);
+      renderCart();
+    }
+
+    function deleteItem(id) {
+      removeFromCart(id);
+      renderCart();
+    }
+  </script>
+</body>
+</html>

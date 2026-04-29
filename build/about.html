@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Commenhers</title>
+  <meta name="description" content="Learn about Commenhers — our mission, team, and commitment to slow fashion and upcycling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="site-logo">
+          <img src="assets/images/logo-brand.png" alt="Commenhers">
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li class="nav-item-dropdown">
+              <a href="corporate-upcycling.html">For Corporates</a>
+              <div class="dropdown-menu">
+                <ul>
+                  <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+                  <li><a href="workshop.html">Workshop</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a href="shop.html" class="btn-shop">Shop</a>
+          <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+        </div>
+        <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav-drawer">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="social-impact.html">Social Impact</a></li>
+      <li><a href="corporate-upcycling.html">For Corporates</a></li>
+      <div class="mobile-submenu">
+        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+        <li><a href="workshop.html">Workshop</a></li>
+      </div>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-cms-text="about.hero_title">About Us</h1>
+      <p data-cms-text="about.hero_subtitle">The story behind Commenhers and the people who make it happen.</p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="section">
+    <div class="container" style="max-width:800px; margin:0 auto; text-align:center;">
+      <h2>Our Story</h2>
+      <p data-cms-text="about.story_body">Commenhers was founded with the goal of making slow fashion more accessible, without compromising on style. All of our products are 100% ethically sourced from textile recycling companies and donation drives, and handsewn with love by local housewives and tailors in small batches.<br>Join our revolution to make upcycling a lifestyle for all.</p>
+    </div>
+  </section>
+
+  <!-- Our Commitments -->
+  <section class="section" style="background:#f9f9f9;">
+    <div class="container" style="text-align:center;">
+      <h2>Our Commitments</h2>
+      <img data-cms-src="about.commitments_image" src="assets/images/Icons.webp" alt="Our Commitments icons" style="width:100%; max-width:1400px; display:block; margin:0 auto;">
+    </div>
+  </section>
+
+  <!-- What do we do? -->
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <h2>What do we do?</h2>
+      <div style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
+        <div style="flex:1; min-width:260px; max-width:400px; position:relative; overflow:hidden; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
+          <img data-cms-src="about.whatwedo_card1_image" src="assets/images/about-volunteers-2.jpg" alt="Upcycling Services" style="width:100%; display:block;">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; padding:1rem;">
+            <h3 style="color:#fff; margin-bottom:1rem;">UPCYCLING SERVICES</h3>
+            <a href="corporate-upcycling.html" class="btn-shop" style="background:#fff; color:#2e7d32;">Read more</a>
+          </div>
+        </div>
+        <div style="flex:1; min-width:260px; max-width:400px; position:relative; overflow:hidden; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
+          <img data-cms-src="about.whatwedo_card2_image" src="assets/images/about-volunteers.jpg" alt="Upcycling Workshops" style="width:100%; display:block;">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; padding:1rem;">
+            <h3 style="color:#fff; margin-bottom:1rem;">UPCYCLING WORKSHOPS</h3>
+            <a href="workshop.html" class="btn-shop" style="background:#fff; color:#2e7d32;">Read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Tracker -->
+  <section class="section" style="background:#f9f9f9;">
+    <div class="container" style="text-align:center;">
+      <h2>Impact Tracker</h2>
+      <img data-cms-src="about.impact_image" src="assets/images/photo_6269252900731601909_w.jpg" alt="Impact Tracker" style="width:100%; max-width:1300px; display:block; margin:1.5rem auto 0;">
+    </div>
+  </section>
+
+  <!-- Our Partners -->
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <h2>Our Partners</h2>
+      <img data-cms-src="about.partners_image" src="assets/images/Commenhers-website-edits-8.png" alt="Our Partners" style="width:100%; max-width:1920px; display:block; margin:1.5rem auto 0;">
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="assets/images/logo-brand.png" alt="Commenhers">
+          <p data-cms-text="global.footer_tagline">Making upcycling a lifestyle for all. Ethically sourced. Handsewn with love.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+            <li><a href="workshop.html">Workshop</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Commenhers &copy; 2026. All rights reserved.</span>
+        <span style="font-size:0.8rem; opacity:0.4;">[ payments.png ]</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cms-content.js"></script>
+</body>
+</html>

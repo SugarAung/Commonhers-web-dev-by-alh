@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Commenhers</title>
+  <meta name="description" content="Shop upcycled fashion products from Commenhers. Ethically sourced, handsewn in small batches.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="site-logo"><img src="assets/images/logo-brand.png" alt="Commenhers"></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li class="nav-item-dropdown">
+              <a href="corporate-upcycling.html">For Corporates</a>
+              <div class="dropdown-menu">
+                <ul>
+                  <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+                  <li><a href="workshop.html">Workshop</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a href="shop.html" class="btn-shop active">Shop</a>
+          <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </a>
+        </div>
+        <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-nav-drawer">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="social-impact.html">Social Impact</a></li>
+      <li><a href="corporate-upcycling.html">For Corporates</a></li>
+      <div class="mobile-submenu">
+        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+        <li><a href="workshop.html">Workshop</a></li>
+      </div>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 data-cms-text="shop.hero_title">Shop</h1>
+      <p data-cms-text="shop.hero_subtitle">Upcycled fashion products — ethically sourced, handsewn with love in small batches.</p>
+    </div>
+  </section>
+
+  <section class="section page-content">
+    <div class="container">
+      <div class="shop-layout">
+
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+
+          <div class="filter-group">
+            <h4>Categories</h4>
+            <ul>
+              <li><a href="#">Accessories <span>(6)</span></a></li>
+              <li><a href="#">Clocks <span>(0)</span></a></li>
+              <li><a href="#">Cooking <span>(0)</span></a></li>
+              <li><a href="#">Furniture <span>(0)</span></a></li>
+              <li><a href="#">Lighting <span>(1)</span></a></li>
+              <li><a href="#">Toys <span>(0)</span></a></li>
+            </ul>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price</h4>
+            <ul>
+              <li><a href="#">$0 – $150</a></li>
+              <li><a href="#">$150 – $300</a></li>
+              <li><a href="#">$300 – $450</a></li>
+              <li><a href="#">$450+</a></li>
+            </ul>
+          </div>
+
+        </aside>
+
+        <!-- Products Area -->
+        <div class="shop-main">
+
+          <!-- Sort bar -->
+          <div class="sort-bar">
+            <p>Showing all <strong id="product-count">7</strong> results</p>
+            <select aria-label="Sort products">
+              <option>Sort by popularity</option>
+              <option>Sort by average rating</option>
+              <option>Sort by newness</option>
+              <option>Sort by price: low to high</option>
+              <option>Sort by price: high to low</option>
+            </select>
+          </div>
+
+          <div class="product-grid" id="product-grid">
+            <!-- Products loaded dynamically from /api/products -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <img src="assets/images/logo-brand.png" alt="Commenhers">
+          <p data-cms-text="global.footer_tagline">Making upcycling a lifestyle for all. Ethically sourced. Handsewn with love.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="social-impact.html">Social Impact</a></li>
+            <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+            <li><a href="workshop.html">Workshop</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/commenhers" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/commenhers/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Commenhers &copy; 2026. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/compare.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cms-content.js"></script>
+</body>
+</html>
