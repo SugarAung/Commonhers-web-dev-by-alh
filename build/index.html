@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a href="#page-content" class="skip-link">Skip to main content</a>
 
   <!-- ===================== HEADER ===================== -->
   <header class="site-header">
@@ -77,7 +78,7 @@
   </nav>
 
   <!-- ===================== HERO SLIDER ===================== -->
-  <section class="hero-slider" aria-label="Hero slideshow">
+  <section id="page-content" class="hero-slider" aria-label="Hero slideshow">
 
     <div class="slide">
       <!-- Replace .slide-bg background-image with hero image 1 when available -->
@@ -109,7 +110,7 @@
   </section>
 
   <!-- ===================== OUR STORY ===================== -->
-  <section class="section our-story">
+  <section class="section our-story animate">
     <div class="container">
       <div class="section-heading">
         <h2>Our Story</h2>
@@ -125,13 +126,13 @@
   </section>
 
   <!-- ===================== OUR COMMITMENTS ===================== -->
-  <section class="section section-alt our-commitments">
+  <section class="section section-alt our-commitments animate-fade">
     <div class="container">
       <div class="section-heading">
         <h2>Our Commitments</h2>
       </div>
       <div class="commitments-img">
-        <img data-cms-src="index.commitments_image" src="assets/images/Icons.webp" alt="Our Commitments" style="width:100%;display:block;">
+        <img data-cms-src="index.commitments_image" src="assets/images/Icons.webp" alt="Our Commitments">
       </div>
     </div>
   </section>
@@ -142,10 +143,10 @@
       <div class="section-heading">
         <h2>What do we do?</h2>
       </div>
-      <div class="cards-grid">
+      <div class="cards-grid stagger">
 
         <!-- Card 1: Upcycling Services -->
-        <a href="corporate-upcycling.html" class="banner-card">
+        <a href="corporate-upcycling.html" class="banner-card animate">
           <div class="banner-card-bg" data-cms-bg="index.whatwedo_card1_image" style="background-image: url('assets/images/about-volunteers-2.jpg'); background-size:cover; background-position:center;"></div>
           <div class="banner-card-overlay"></div>
           <div class="banner-card-content">
@@ -155,7 +156,7 @@
         </a>
 
         <!-- Card 2: Upcycling Workshops -->
-        <a href="workshop.html" class="banner-card">
+        <a href="workshop.html" class="banner-card animate">
           <div class="banner-card-bg" data-cms-bg="index.whatwedo_card2_image" style="background-image: url('assets/images/about-volunteers.jpg'); background-size:cover; background-position:center;"></div>
           <div class="banner-card-overlay"></div>
           <div class="banner-card-content">
@@ -169,25 +170,25 @@
   </section>
 
   <!-- ===================== IMPACT TRACKER ===================== -->
-  <section class="section section-alt">
+  <section class="section section-alt impact-tracker animate-fade">
     <div class="container">
       <div class="section-heading">
         <h2>Impact Tracker</h2>
       </div>
       <div class="impact-img">
-        <img data-cms-src="index.impact_image" src="assets/images/photo_6269252900731601909_w.jpg" alt="Impact Tracker" style="width:100%;display:block;">
+        <img data-cms-src="index.impact_image" src="assets/images/photo_6269252900731601909_w.jpg" alt="Impact Tracker">
       </div>
     </div>
   </section>
 
   <!-- ===================== OUR PARTNERS ===================== -->
-  <section class="section our-partners">
+  <section class="section our-partners animate-fade">
     <div class="container">
       <div class="section-heading">
         <h2>Our Partners</h2>
       </div>
       <div class="partners-img">
-        <img data-cms-src="index.partners_image" src="assets/images/Commenhers-website-edits-8.png" alt="Our Partners" style="width:100%;display:block;">
+        <img data-cms-src="index.partners_image" src="assets/images/Commenhers-website-edits-8.png" alt="Our Partners">
       </div>
     </div>
   </section>
@@ -221,7 +222,7 @@
         <div class="footer-social">
           <h4>Follow Us</h4>
           <div class="social-icons">
-            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/commenhers" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-facebook-f"></i>
             </a>
             <a href="https://www.instagram.com/commenhers" data-cms-href="global.footer_instagram" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
@@ -238,7 +239,7 @@
       <div class="footer-bottom">
         <span>Commenhers &copy; 2026. All rights reserved.</span>
         <!-- Replace with: <img src="assets/images/payments.png" alt="Payment methods"> -->
-        <span style="font-size:0.8rem; opacity:0.4;">[ payments.png — add to assets/images/ ]</span>
+        <span class="footer-payment-placeholder">[ payments.png — add to assets/images/ ]</span>
       </div>
     </div>
   </footer>

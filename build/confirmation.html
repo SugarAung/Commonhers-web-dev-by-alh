@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a href="#page-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header">
     <div class="container">
@@ -61,7 +62,7 @@
     </ul>
   </nav>
 
-  <section class="confirmation-section">
+  <section id="page-content" class="confirmation-section">
     <div class="container">
       <div class="confirmation-box" id="confirmation-box">
         <div class="confirmation-icon">
@@ -72,10 +73,10 @@
         <div class="confirmation-items" id="confirmation-items"></div>
         <p class="confirmation-note">
           Thank you for your order. We'll send payment instructions to your email shortly.<br>
-          Questions? Email <a href="mailto:commenhers@gmail.com" style="color:var(--color-primary);">commenhers@gmail.com</a>
-          or WhatsApp <a href="https://wa.me/6591070410" style="color:var(--color-primary);">+65 9107 0410</a>.
+          Questions? Email <a href="mailto:commenhers@gmail.com">commenhers@gmail.com</a>
+          or WhatsApp <a href="https://wa.me/6591070410">+65 9107 0410</a>.
         </p>
-        <a href="shop.html" class="btn-checkout" style="margin-top:24px;display:inline-block;">Back to Shop</a>
+        <a href="shop.html" class="btn-checkout">Back to Shop</a>
       </div>
     </div>
   </section>
@@ -135,7 +136,7 @@
             <span>$${total.toFixed(2)}</span>
           </div>`;
       } else {
-        itemsContainer.innerHTML = '<p style="color:var(--color-muted);font-size:0.9rem;">Your order has been saved.</p>';
+        itemsContainer.innerHTML = '<p class="confirmation-empty-msg">Your order has been saved.</p>';
       }
 
       clearCart();

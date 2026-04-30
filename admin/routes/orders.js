@@ -1,31 +1,22 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 const router = express.Router();
-
-const ORDERS_FILE = path.join(__dirname, '../../data/orders.json');
+const supabase = require('../../lib/supabase');
 
 function requireLogin(req, res, next) {
   if (req.session.admin) return next();
   res.redirect('/admin/login');
 }
 
-function readOrders() {
-  try { return JSON.parse(fs.readFileSync(ORDERS_FILE, 'utf8')); } catch { return []; }
-}
-
-router.get('/orders', requireLogin, (req, res) => {
-  const orders = readOrders().reverse();
-  res.render('orders', { orders });
+router.get('/orders', requireLogin, async (req, res) => {
+  const { data: orders } = await supabase
+    .from('orders')
+    .select('*')
+    .order('createdAt', { ascending: false });
+  res.render('orders', { orders: orders || [] });
 });
 
-router.post('/orders/:id/status', requireLogin, (req, res) => {
-  const orders = readOrders();
-  const order = orders.find(o => o.id === req.params.id);
-  if (order) {
-    order.status = req.body.status;
-    fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
-  }
+router.post('/orders/:id/status', requireLogin, async (req, res) => {
+  await supabase.from('orders').update({ status: req.body.status }).eq('id', req.params.id);
   res.redirect('/admin/orders');
 });
 

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a href="#page-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header">
     <div class="container">
@@ -63,65 +64,110 @@
     </ul>
   </nav>
 
-  <section class="page-hero">
+  <section id="page-content" class="page-hero">
     <div class="container">
-      <h1 data-cms-text="about.hero_title">About Us</h1>
-      <p data-cms-text="about.hero_subtitle">The story behind Commenhers and the people who make it happen.</p>
+      <h1>About Us</h1>
     </div>
   </section>
 
-  <!-- Our Story -->
-  <section class="section">
-    <div class="container" style="max-width:800px; margin:0 auto; text-align:center;">
-      <h2>Our Story</h2>
-      <p data-cms-text="about.story_body">Commenhers was founded with the goal of making slow fashion more accessible, without compromising on style. All of our products are 100% ethically sourced from textile recycling companies and donation drives, and handsewn with love by local housewives and tailors in small batches.<br>Join our revolution to make upcycling a lifestyle for all.</p>
+  <!-- About Commenhers Intro -->
+  <section class="section about-intro animate">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-image">
+          <img src="assets/images/Commenhers_Studio-Space.jpg" alt="Commenhers Studio Space">
+        </div>
+        <div class="intro-text">
+          <h2>About Commenhers</h2>
+          <p>Commenhers is a sustainable fashion brand which aims to make upcycled apparel &amp; accessories as a lifestyle. Upcycling involves repurposing and remodeling apparels to create something of higher quality or value than the original.</p>
+          <p>At Commenhers, we epitomize creativity intertwined with sustainability. Our team is dedicated to crafting fun yet practical designs, setting a new standard in eco-conscious fashion.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Our Commitments -->
-  <section class="section" style="background:#f9f9f9;">
-    <div class="container" style="text-align:center;">
-      <h2>Our Commitments</h2>
-      <img data-cms-src="about.commitments_image" src="assets/images/Icons.webp" alt="Our Commitments icons" style="width:100%; max-width:1400px; display:block; margin:0 auto;">
-    </div>
-  </section>
-
-  <!-- What do we do? -->
-  <section class="section">
-    <div class="container" style="text-align:center;">
-      <h2>What do we do?</h2>
-      <div style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
-        <div style="flex:1; min-width:260px; max-width:400px; position:relative; overflow:hidden; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
-          <img data-cms-src="about.whatwedo_card1_image" src="assets/images/about-volunteers-2.jpg" alt="Upcycling Services" style="width:100%; display:block;">
-          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; padding:1rem;">
-            <h3 style="color:#fff; margin-bottom:1rem;">UPCYCLING SERVICES</h3>
-            <a href="corporate-upcycling.html" class="btn-shop" style="background:#fff; color:#2e7d32;">Read more</a>
+  <!-- Our Team -->
+  <section class="section section-alt animate-fade">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Our Team</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="assets/images/team-member1.jpg" alt="Linn">
+          <div class="team-card-body">
+            <h3>Linn</h3>
+            <p class="position">Co-Founder</p>
+            <p>Resourceful and driven, Linn is in charge of strategising our social impact, ensuring our financials add up seamlessly. He has big aspirations for Commenhers — not only to make a mark in sustainable fashion but to also spearhead a thriving business model centred on sustainability. The spark for Commenhers ignited during a fateful group project back in their poly days, and the rest is history.</p>
           </div>
         </div>
-        <div style="flex:1; min-width:260px; max-width:400px; position:relative; overflow:hidden; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.12);">
-          <img data-cms-src="about.whatwedo_card2_image" src="assets/images/about-volunteers.jpg" alt="Upcycling Workshops" style="width:100%; display:block;">
-          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; padding:1rem;">
-            <h3 style="color:#fff; margin-bottom:1rem;">UPCYCLING WORKSHOPS</h3>
-            <a href="workshop.html" class="btn-shop" style="background:#fff; color:#2e7d32;">Read more</a>
+        <div class="team-card">
+          <img src="assets/images/team-member2.jpg" alt="Yanee">
+          <div class="team-card-body">
+            <h3>Yanee</h3>
+            <p class="position">CEO &amp; Co-Founder</p>
+            <p>Yanee is currently a freshman at NUS majoring in Business Administration. With a strong family emphasis on kindness and caring for others, she founded a social enterprise in Singapore focused on upcycling fabric waste into high-quality products. Yanee's mission is clear: advocate for sustainability and inspire a positive shift towards a more eco-conscious lifestyle in Singapore.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img src="assets/images/team-member3.jpg" alt="Syakura">
+          <div class="team-card-body">
+            <h3>Syakura</h3>
+            <p class="position">Product Design Executive &amp; Product Manager</p>
+            <p>Syak is our in-house designer who curates the design features and vibe of our upcycled collections. She monitors current trends, anticipates future trends, and gives a balanced take on the concept for each collection. With a shared passion for sewing and repurposing materials, Commenhers' mission to repurpose fabric waste and involve seamstresses from underprivileged backgrounds resonated deeply with Syak.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Impact Tracker -->
-  <section class="section" style="background:#f9f9f9;">
-    <div class="container" style="text-align:center;">
-      <h2>Impact Tracker</h2>
-      <img data-cms-src="about.impact_image" src="assets/images/photo_6269252900731601909_w.jpg" alt="Impact Tracker" style="width:100%; max-width:1300px; display:block; margin:1.5rem auto 0;">
+  <!-- Quote Banner -->
+  <div class="quote-banner">
+    <h2>At Commenhers we believe in creativity through upcycling</h2>
+  </div>
+
+  <!-- Video -->
+  <section class="section video-section animate-fade">
+    <div class="container">
+      <video controls muted playsinline>
+        <source src="assets/videos/Commenhers_EverdayUpcyle-Series_Part-1B-UPDATED.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
-  <!-- Our Partners -->
-  <section class="section">
-    <div class="container" style="text-align:center;">
-      <h2>Our Partners</h2>
-      <img data-cms-src="about.partners_image" src="assets/images/Commenhers-website-edits-8.png" alt="Our Partners" style="width:100%; max-width:1920px; display:block; margin:1.5rem auto 0;">
+  <!-- How Much We've Grown -->
+  <section class="section section-alt growth-stats-section animate-fade">
+    <div class="container">
+      <div class="section-heading">
+        <h2>How Much We Have Grown Over The Years</h2>
+      </div>
+      <div class="sdg-grid">
+        <div class="sdg-card">
+          <div class="sdg-number">2019</div>
+          <div class="sdg-title">Founding Year</div>
+        </div>
+        <div class="sdg-card">
+          <div class="sdg-number">90</div>
+          <div class="sdg-title">Local Beneficiaries</div>
+        </div>
+        <div class="sdg-card">
+          <div class="sdg-number">30</div>
+          <div class="sdg-title">Companies Work With Us</div>
+        </div>
+        <div class="sdg-card">
+          <div class="sdg-number">4</div>
+          <div class="sdg-title">Studio &amp; Community Sewing Spaces</div>
+        </div>
+        <div class="sdg-card">
+          <div class="sdg-number">10,000</div>
+          <div class="sdg-title">Awareness Created</div>
+        </div>
+        <div class="sdg-card">
+          <div class="sdg-number">50</div>
+          <div class="sdg-title">Projects Completed</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -147,15 +193,15 @@
         <div class="footer-social">
           <h4>Follow Us</h4>
           <div class="social-icons">
-            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/commenhers" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/commenhers" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/commenhers/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
         <span>Commenhers &copy; 2026. All rights reserved.</span>
-        <span style="font-size:0.8rem; opacity:0.4;">[ payments.png ]</span>
+        <span class="footer-payment-placeholder">[ payments.png ]</span>
       </div>
     </div>
   </footer>

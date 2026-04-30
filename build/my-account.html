@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,8 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 <body>
+  <a href="#page-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header">
     <div class="container">
@@ -63,55 +65,97 @@
     </ul>
   </nav>
 
-  <section class="page-hero">
+  <section id="page-content" class="page-hero">
     <div class="container">
       <h1>My Account</h1>
       <p>Log in or create an account to track orders and manage your profile.</p>
     </div>
   </section>
 
-  <section class="section page-content">
+  <section class="section page-content animate">
     <div class="container">
-      <div class="auth-grid">
 
-        <!-- Login -->
-        <div class="auth-card">
-          <h2>Login</h2>
-          <form action="#" method="post">
-            <div class="form-group">
-              <label for="login-username">Username or email address *</label>
-              <input type="text" id="login-username" name="username" required>
-            </div>
-            <div class="form-group">
-              <label for="login-password">Password *</label>
-              <input type="password" id="login-password" name="password" required>
-            </div>
-            <div class="form-check">
-              <input type="checkbox" id="remember-me" name="rememberme">
-              <label for="remember-me">Remember me</label>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; margin-bottom:1rem;">Log In</button>
-            <a href="#" class="lost-password">Lost your password?</a>
-          </form>
+      <!-- Auth forms (shown when logged out) -->
+      <div id="account-auth">
+        <div class="auth-grid">
+
+          <!-- Login -->
+          <div class="auth-card">
+            <h2>Login</h2>
+            <form id="login-form" novalidate>
+              <div class="form-group">
+                <label for="login-email">Email address *</label>
+                <input type="email" id="login-email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="login-password">Password *</label>
+                <input type="password" id="login-password" name="password" required>
+              </div>
+              <p id="login-error" class="form-error"></p>
+              <button type="submit" class="btn btn-primary" data-label="Log In">Log In</button>
+            </form>
+          </div>
+
+          <!-- Register -->
+          <div class="auth-card">
+            <h2>Register</h2>
+            <p class="auth-note">Create an account to access your order status and history.</p>
+            <form id="register-form" novalidate>
+              <div class="form-group">
+                <label for="reg-name">Full name *</label>
+                <input type="text" id="reg-name" name="fullname" required>
+              </div>
+              <div class="form-group">
+                <label for="reg-email">Email address *</label>
+                <input type="email" id="reg-email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="reg-password">Password * <small>(min. 6 characters)</small></label>
+                <input type="password" id="reg-password" name="password" required minlength="6">
+              </div>
+              <p id="register-error" class="form-error"></p>
+              <button type="submit" class="btn btn-primary" data-label="Create Account">Create Account</button>
+            </form>
+          </div>
+
         </div>
-
-        <!-- Register -->
-        <div class="auth-card">
-          <h2>Register</h2>
-          <p class="auth-note" style="margin-bottom:1.5rem;">Registering for this site allows you to access your order status and history. Just fill in the fields below, and we'll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</p>
-          <div class="auth-divider">Or register below</div>
-          <form action="#" method="post">
-            <div class="form-group">
-              <label for="reg-email">Email address *</label>
-              <input type="email" id="reg-email" name="email" required>
-              <small class="auth-note" style="margin-top:6px; display:block;">A link to set a new password will be sent to your email address.</small>
-            </div>
-            <p class="auth-note">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#" style="color:var(--color-primary);">privacy policy</a>.</p>
-            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1.5rem;">Register</button>
-          </form>
-        </div>
-
       </div>
+
+      <!-- Dashboard (shown when logged in) -->
+      <div id="account-dashboard" style="display:none;">
+        <div class="account-dashboard">
+
+          <div class="account-info">
+            <div class="account-avatar"><i class="fas fa-user"></i></div>
+            <div class="account-info-text">
+              <h3 id="account-name"></h3>
+              <p id="account-email"></p>
+            </div>
+            <button id="logout-btn" class="btn-logout">Log Out</button>
+          </div>
+
+          <h2 class="account-order-heading">Order History</h2>
+
+          <p id="no-orders" class="no-orders-msg" style="display:none;">You haven't placed any orders yet. <a href="shop.html">Start shopping</a></p>
+
+          <div class="table-scroll">
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="orders-tbody"></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -137,9 +181,9 @@
         <div class="footer-social">
           <h4>Follow Us</h4>
           <div class="social-icons">
-            <a href="#" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/commenhers" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/commenhers" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/commenhers/" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
@@ -152,5 +196,6 @@
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/cms-content.js"></script>
+  <script src="assets/js/account.js"></script>
 </body>
 </html>

@@ -1,1 +1,14 @@
-{ "total": 0, "today": { "date": "", "count": 0 }, "pages": {} }
+{
+  "total": 7,
+  "today": {
+    "date": "2026-04-29",
+    "count": 7
+  },
+  "pages": {
+    "/my-account.html": 3,
+    "/index.html": 1,
+    "/shop.html": 1,
+    "/cart.html": 1,
+    "/checkout.html": 1
+  }
+}

@@ -1,10 +1,9 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const router = express.Router();
+const supabase = require('../../lib/supabase');
 
-const CONTENT_FILE = path.join(__dirname, '../../data/content.json');
 const IMAGES_DIR = path.join(__dirname, '../../build/assets/images');
 
 const storage = multer.diskStorage({
@@ -43,31 +42,23 @@ function requireLogin(req, res, next) {
   res.redirect('/admin/login');
 }
 
-function readContent() {
-  try { return JSON.parse(fs.readFileSync(CONTENT_FILE, 'utf8')); } catch { return {}; }
-}
-
-function writeContent(data) {
-  fs.writeFileSync(CONTENT_FILE, JSON.stringify(data, null, 2));
-}
-
-router.get('/content', requireLogin, (req, res) => {
-  const content = readContent();
+router.get('/content', requireLogin, async (req, res) => {
+  const { data } = await supabase.from('site_content').select('data').eq('id', 1).single();
+  const content = data ? data.data : {};
   res.render('content', { content, saved: req.query.saved === '1' });
 });
 
-router.post('/content', requireLogin, upload.fields(IMAGE_FIELDS), (req, res) => {
-  const content = readContent();
+router.post('/content', requireLogin, upload.fields(IMAGE_FIELDS), async (req, res) => {
+  const { data } = await supabase.from('site_content').select('data').eq('id', 1).single();
+  const content = data ? { ...data.data } : {};
   const body = req.body;
   const files = req.files || {};
 
-  // Helper: set nested key on content object
   function set(section, key, value) {
     if (!content[section]) content[section] = {};
     content[section][key] = value;
   }
 
-  // Helper: resolve image — use uploaded file if present, else keep body value
   function img(fieldName, section, key) {
     if (files[fieldName] && files[fieldName][0]) {
       set(section, key, 'assets/images/' + files[fieldName][0].filename);
@@ -142,7 +133,7 @@ router.post('/content', requireLogin, upload.fields(IMAGE_FIELDS), (req, res) =>
   set('shop', 'hero_title', body.shop_hero_title || '');
   set('shop', 'hero_subtitle', body.shop_hero_subtitle || '');
 
-  writeContent(content);
+  await supabase.from('site_content').upsert({ id: 1, data: content });
   res.redirect('/admin/content?saved=1');
 });
 

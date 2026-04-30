@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <a href="#page-content" class="skip-link">Skip to main content</a>
 
   <header class="site-header">
     <div class="container">
@@ -61,7 +62,7 @@
     </ul>
   </nav>
 
-  <section class="page-hero">
+  <section id="page-content" class="page-hero">
     <div class="container">
       <h1>Your Cart</h1>
       <p>Review your items before checkout.</p>
@@ -131,7 +132,7 @@
             <div class="cart-product-cell">
               ${item.image
                 ? `<img src="${item.image}" alt="${item.name}" class="cart-thumb">`
-                : `<div class="cart-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--color-bg-light);font-size:1.5rem;color:var(--color-accent);"><i class="fas fa-shopping-bag"></i></div>`}
+                : `<div class="cart-thumb cart-thumb-placeholder"><i class="fas fa-shopping-bag"></i></div>`}
               <span class="cart-product-name">${item.name}</span>
             </div>
           </td>
