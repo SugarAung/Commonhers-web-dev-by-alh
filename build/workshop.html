@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -37,10 +37,7 @@
         </nav>
         <div class="header-cta">
           <a href="shop.html" class="btn-shop">Shop</a>
-          <a href="cart.html" class="cart-icon-btn" aria-label="View cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge" id="cart-badge">0</span>
-          </a>
+
         </div>
         <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
       </div>
@@ -181,17 +178,17 @@
         <h2>Watch Us in Action</h2>
       </div>
       <div class="videos-grid">
-        <div class="video-placeholder" data-cms-video="workshop.video1_url">
-          <i class="fas fa-play-circle"></i>
-          <span data-cms-text="workshop.video1_title">Jurong West Upcycling Workshop</span>
+        <div class="video-item">
+          <video controls preload="metadata" controlslist="nodownload">
+            <source src="assets/images/Commenhers_Jurong West workshop.mp4" type="video/mp4">
+          </video>
+          <p class="video-caption">Jurong West Workshop</p>
         </div>
-        <div class="video-placeholder" data-cms-video="workshop.video2_url">
-          <i class="fas fa-play-circle"></i>
-          <span data-cms-text="workshop.video2_title">About Our Workshop</span>
-        </div>
-        <div class="video-placeholder" data-cms-video="workshop.video3_url">
-          <i class="fas fa-play-circle"></i>
-          <span data-cms-text="workshop.video3_title">Between the Seams</span>
+        <div class="video-item">
+          <video controls preload="metadata" controlslist="nodownload">
+            <source src="assets/images/About our workshop.mp4" type="video/mp4">
+          </video>
+          <p class="video-caption">About Our Workshop</p>
         </div>
       </div>
     </div>
