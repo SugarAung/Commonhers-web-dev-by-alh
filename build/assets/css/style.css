@@ -269,9 +269,13 @@ ul { list-style: none; }
   color: var(--color-primary);
 }
 .mobile-nav-drawer .mobile-submenu {
-  padding-left: 16px;
+  padding-left: 12px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   margin-top: 4px;
-  border-left: 3px solid var(--color-accent);
+  background: var(--color-bg-light);
+  border-radius: var(--radius-sm);
+  list-style: none;
 }
 .mobile-nav-drawer .mobile-submenu a {
   font-size: 0.92rem;
@@ -410,7 +414,7 @@ ul { list-style: none; }
   margin: 0 auto;
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #3a3a3a;
+  color: var(--color-text);
   text-align: center;
 }
 
@@ -426,7 +430,7 @@ ul { list-style: none; }
   text-align: center;
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #3a3a3a;
+  color: var(--color-text);
 }
 .story-readmore {
   display: block;
@@ -1239,7 +1243,7 @@ ul { list-style: none; }
   background: var(--color-bg-light);
   border-radius: var(--radius);
   padding: 28px 24px;
-  text-align: center;
+  text-align: left;
   box-shadow: var(--shadow);
 }
 .feature-card h3 {
@@ -1267,7 +1271,8 @@ ul { list-style: none; }
   background: var(--color-bg-light);
   border-radius: var(--radius);
   padding: 24px;
-  border-left: 4px solid var(--color-primary);
+  border: 1px solid rgba(46,125,50,0.15);
+  box-shadow: var(--shadow-sm);
 }
 .testimonial-card blockquote {
   font-size: 0.95rem;
@@ -1380,7 +1385,7 @@ ul { list-style: none; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
   margin-top: 0;
 }
 .collab-text h3 {
@@ -1457,7 +1462,7 @@ ul { list-style: none; }
   background: var(--color-bg-light);
   border-radius: var(--radius);
   padding: 24px;
-  border-top: 3px solid var(--color-primary);
+  border: 1px solid var(--color-border-light);
 }
 .maker-req-card h4 {
   font-size: 1rem;
@@ -1870,9 +1875,9 @@ ul { list-style: none; }
 
 /* Feature card icons */
 .feature-card i {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--color-primary);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   display: block;
 }
 .maker-req-card h4 i {
@@ -1884,7 +1889,7 @@ ul { list-style: none; }
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 20px;
+  margin: 0 0 16px;
   display: block;
 }
 
@@ -1975,7 +1980,7 @@ ul { list-style: none; }
   padding: 28px 32px;
   background: var(--color-bg-light);
   border-radius: var(--radius);
-  border-left: 4px solid var(--color-primary);
+  border: 1px solid rgba(46,125,50,0.2);
 }
 
 /* Account page */
@@ -2022,7 +2027,7 @@ ul { list-style: none; }
   text-align: left;
   padding: .6rem .75rem;
   border-bottom: 2px solid var(--color-border);
-  color: #444;
+  color: var(--color-muted);
 }
 .orders-table td {
   padding: .6rem .75rem;
@@ -2297,7 +2302,7 @@ a[href="shop.html"] { display: none !important; }
 .team-card-body p {
   font-size: 0.9rem;
   line-height: 1.75;
-  color: #555;
+  color: var(--color-muted);
 }
 
 /* ── Quote Banner ──────────────────────────────────────── */
@@ -2332,6 +2337,25 @@ a[href="shop.html"] { display: none !important; }
   object-fit: contain;
   box-shadow: 0 8px 40px rgba(0,0,0,0.45);
 }
+.video-embed {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+.video-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 0;
+}
+.video-embed--portrait {
+  max-width: 360px;
+  margin: 0 auto;
+}
+/* Inside videos-grid, let column width dictate size */
+.videos-grid .video-embed--portrait {
+  max-width: none;
+}
 /* Framed video — used on workshop + corporate pages */
 .videos-grid video,
 .collab-section video {
@@ -2352,14 +2376,17 @@ a[href="shop.html"] { display: none !important; }
 .video-caption {
   text-align: center;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--color-muted);
   margin: 0;
 }
 
 /* ── Growth Stats ──────────────────────────────────────── */
+.growth-stats-section .sdg-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
 .growth-stats-section .section-heading p {
   font-size: 1rem;
-  color: #555;
+  color: var(--color-muted);
   margin-top: 8px;
 }
 

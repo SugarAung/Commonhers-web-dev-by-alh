@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
   <a href="#page-content" class="skip-link">Skip to main content</a>
@@ -51,11 +52,13 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="social-impact.html">Social Impact</a></li>
-      <li><a href="corporate-upcycling.html">For Corporates</a></li>
-      <div class="mobile-submenu">
-        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
-        <li><a href="workshop.html">Workshop</a></li>
-      </div>
+      <li>
+        <a href="corporate-upcycling.html">For Corporates</a>
+        <ul class="mobile-submenu">
+          <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+        </ul>
+      </li>
       <li><a href="contact.html">Contact Us</a></li>
       <li><a href="shop.html">Shop</a></li>
     </ul>
@@ -64,6 +67,7 @@
   <section id="page-content" class="page-hero">
     <div class="container">
       <h1>About Us</h1>
+      <p data-cms-text="about.hero_subtitle">Our mission, our people, and the impact we're making through upcycling.</p>
     </div>
   </section>
 
@@ -112,10 +116,13 @@
   <!-- Video -->
   <section class="section video-section animate-fade">
     <div class="container">
-      <video controls muted playsinline>
-        <source src="assets/images/Video Below at commonhers.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="video-embed video-embed--portrait">
+        <iframe src="https://www.youtube-nocookie.com/embed/DsWQzOg1bp8?rel=0"
+                title="Commenhers — who we are"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+      </div>
     </div>
   </section>
 

@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
   <a href="#page-content" class="skip-link">Skip to main content</a>
@@ -49,11 +50,13 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
       <li><a href="social-impact.html">Social Impact</a></li>
-      <li><a href="corporate-upcycling.html">For Corporates</a></li>
-      <div class="mobile-submenu">
-        <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
-        <li><a href="workshop.html">Workshop</a></li>
-      </div>
+      <li>
+        <a href="corporate-upcycling.html">For Corporates</a>
+        <ul class="mobile-submenu">
+          <li><a href="corporate-upcycling.html">Upcycling Services</a></li>
+          <li><a href="workshop.html">Workshop</a></li>
+        </ul>
+      </li>
       <li><a href="contact.html">Contact Us</a></li>
       <li><a href="shop.html">Shop</a></li>
     </ul>
@@ -179,15 +182,23 @@
       </div>
       <div class="videos-grid">
         <div class="video-item">
-          <video controls preload="metadata" controlslist="nodownload">
-            <source src="assets/images/Commenhers_Jurong West workshop.mp4" type="video/mp4">
-          </video>
+          <div class="video-embed video-embed--portrait">
+            <iframe src="https://www.youtube-nocookie.com/embed/iGpqzHtnxv0?rel=0"
+                    title="Jurong West Workshop"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
           <p class="video-caption">Jurong West Workshop</p>
         </div>
         <div class="video-item">
-          <video controls preload="metadata" controlslist="nodownload">
-            <source src="assets/images/About our workshop.mp4" type="video/mp4">
-          </video>
+          <div class="video-embed video-embed--portrait">
+            <iframe src="https://www.youtube-nocookie.com/embed/E_mAUAfGmC0?rel=0"
+                    title="About Our Workshop"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
           <p class="video-caption">About Our Workshop</p>
         </div>
       </div>
@@ -226,8 +237,8 @@
         </div>
         <div class="form-submit">
           <button type="submit" class="btn btn-primary" data-label="Send Enquiry">Send Enquiry</button>
-          <p class="form-status"></p>
         </div>
+        <p class="form-status"></p>
       </form>
     </div>
   </section>
