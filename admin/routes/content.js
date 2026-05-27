@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const multer = require('multer');
 const router = express.Router();
 const supabase = require('../../lib/supabase');
+
+const STATIC_CONTENT_PATH = path.join(__dirname, '../../build/assets/data/content.json');
 
 const IMAGES_DIR = path.join(__dirname, '../../build/assets/images');
 
@@ -134,6 +137,7 @@ router.post('/content', requireLogin, upload.fields(IMAGE_FIELDS), async (req, r
   set('shop', 'hero_subtitle', body.shop_hero_subtitle || '');
 
   await supabase.from('site_content').upsert({ id: 1, data: content });
+  fs.writeFileSync(STATIC_CONTENT_PATH, JSON.stringify(content, null, 2));
   res.redirect('/admin/content?saved=1');
 });
 

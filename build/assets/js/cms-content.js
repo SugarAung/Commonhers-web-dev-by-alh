@@ -12,7 +12,7 @@
   }
 
   fetch('/api/content')
-    .then(function (r) { return r.json(); })
+    .then(function (r) { return r.ok ? r.json() : fetch('/assets/data/content.json').then(function (r2) { return r2.json(); }); })
     .then(function (data) {
       // data-cms-text
       document.querySelectorAll('[data-cms-text]').forEach(function (el) {

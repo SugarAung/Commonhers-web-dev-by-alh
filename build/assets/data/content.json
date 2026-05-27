@@ -1,0 +1,70 @@
+{
+  "global": {
+    "logo": "assets/images/logo-brand.png",
+    "footer_tagline": "Making upcycling a lifestyle for all. Ethically sourced. Handsewn with love.",
+    "footer_instagram": "https://www.instagram.com/commenhers",
+    "footer_linkedin": "https://www.linkedin.com/company/commenhers/"
+  },
+  "index": {
+    "hero_slide1_title": "Book an upcycling workshop for your team or school today and make sustainability a hands-on experience",
+    "hero_slide2_title": "Transform your organization's fabric waste into value. Contact us today for customized upcycling consultation and execution!",
+    "hero_slide3_title": "Empowering local beneficiaries by creating opportunities through upskilling and inclusive production efforts",
+    "story_body": "Commenhers was founded with the goal of making slow fashion more accessible, without compromising on style. All of our products are 100% ethically sourced from textile recycling companies and donation drives, and handsewn with love by local housewives and tailors in small batches. Join our revolution to make upcycling a lifestyle for all.",
+    "commitments_image": "assets/images/Our commitment.jpg",
+    "impact_image": "assets/images/Impact Tracker.jpg",
+    "partners_image": "assets/images/Our Partners.jpg",
+    "whatwedo_card1_image": "assets/images/about-volunteers-2.jpg",
+    "whatwedo_card2_image": "assets/images/about-volunteers.jpg"
+  },
+  "about": {
+    "hero_slide1_title": "Book an upcycling workshop for your team or school today and make sustainability a hands-on experience",
+    "hero_slide2_title": "Transform your organization's fabric waste into value. Contact us today for customized upcycling consultation and execution!",
+    "hero_slide3_title": "Empowering local beneficiaries by creating opportunities through upskilling and inclusive production efforts",
+    "story_body": "Commenhers was founded with the goal of making slow fashion more accessible, without compromising on style. All of our products are 100% ethically sourced from textile recycling companies and donation drives, and handsewn with love by local housewives and tailors in small batches. Join our revolution to make upcycling a lifestyle for all.",
+    "commitments_image": "assets/images/Our commitment.jpg",
+    "whatwedo_card1_image": "assets/images/about-volunteers-2.jpg",
+    "whatwedo_card2_image": "assets/images/about-volunteers.jpg",
+    "impact_image": "assets/images/Impact Tracker.jpg",
+    "partners_image": "assets/images/Our Partners.jpg"
+  },
+  "social_impact": {
+    "hero_title": "Social Impact",
+    "hero_subtitle": "Tracking the difference we make together — for people and the planet.",
+    "esg_image": "assets/images/social-impact-community.jpg",
+    "beneficiaries_image": "assets/images/social-impact-community.jpg",
+    "testimonial_body": "The DFS x Artist Fashion Show at Science Centre Singapore gave our Yuhua SewMates the chance to step out of their comfort zones and explore new possibilities. Guided by Commenhers, they turned materials like curtains and chip bags into beautiful upcycled fashion pieces. This experience helped them learn, grow, and make a meaningful impact by transforming waste into art, while building confidence and stronger connections within the community.",
+    "testimonial_image": "assets/images/social-impact-fashion-show.jpg"
+  },
+  "corporate": {
+    "hero_title": "Corporate Upcycling Services",
+    "hero_subtitle": "Transform your organization's fabric waste into value. Customized consultation and execution for businesses of all sizes.",
+    "casestudy1_image": "",
+    "casestudy2_image": "assets/images/corporate-decathlon.png",
+    "casestudy3_image": "",
+    "casestudy4_image": "assets/images/corporate-gaincity.jpg",
+    "casestudy5_image": "",
+    "collab_image": "assets/images/product-compact-bag.jpg"
+  },
+  "workshop": {
+    "hero_title": "Upcycling Workshop",
+    "hero_subtitle": "Book a workshop for your team or school today — make sustainability a hands-on experience.",
+    "video1_url": "",
+    "video1_title": "Jurong West Upcycling Workshop",
+    "video2_url": "",
+    "video2_title": "About Our Workshop",
+    "video3_url": "",
+    "video3_title": "Between the Seams"
+  },
+  "contact": {
+    "hero_title": "Contact Us",
+    "hero_subtitle": "Have a question or want to collaborate? We'd love to hear from you.",
+    "email": "commenhers@gmail.com",
+    "whatsapp": "+65 9107 0410",
+    "whatsapp_link": "https://wa.me/6591070410",
+    "address": "26 Ubi Rd 4, Singapore 408613, #02-00 SDG Center"
+  },
+  "shop": {
+    "hero_title": "Shop",
+    "hero_subtitle": "Upcycled fashion products — ethically sourced, handsewn with love in small batches."
+  }
+}
