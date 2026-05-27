@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /confirmation.html
+Disallow: /wishlist.html
+Disallow: /my-account.html
+
+Sitemap: https://commonhers-web-dev-by-alh.pages.dev/sitemap.xml

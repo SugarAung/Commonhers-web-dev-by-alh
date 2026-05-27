@@ -448,14 +448,141 @@ ul { list-style: none; }
 }
 
 /* =============================================
-   OUR COMMITMENTS
+   OUR COMMITMENTS SLIDER
    ============================================= */
-.our-commitments .commitments-img {
+.commitments-slider {
+  position: relative;
+  width: 100%;
   max-width: 900px;
+  height: 480px;
   margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+}
+.commitment-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.commitment-slide.active { opacity: 1; }
+.commitment-slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.commitment-slide-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.05) 100%);
+}
+.commitment-slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 36px 40px;
+  color: #fff;
+  z-index: 1;
+}
+.commitment-slide-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.commitment-slide-content p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  opacity: 0.92;
+  max-width: 680px;
+}
+.commitment-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.commitment-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-border);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
+}
+.commitment-dot.active {
+  background: var(--color-primary);
+  transform: scale(1.25);
+}
+@media (max-width: 768px) {
+  .commitments-slider { height: 340px; }
+  .commitment-slide-content { padding: 24px 20px; }
+  .commitment-slide-content h3 { font-size: 1.1rem; }
+  .commitment-slide-content p { font-size: 0.85rem; }
+}
+@media (max-width: 480px) {
+  .commitments-slider { height: 280px; }
+}
+
+/* ── Team single co-founder layout ────────────────────── */
+.team-grid--single {
+  max-width: 780px;
+  margin: 40px auto 0;
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+}
+.team-grid--single .founder-photo {
+  width: 260px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+.team-grid--single .founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.team-grid--single .founder-bio {
+  padding: 36px 36px 36px 36px;
+  flex: 1;
+}
+.team-grid--single .founder-bio h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-dark);
+}
+.team-grid--single .founder-bio .position {
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+.team-grid--single .founder-bio p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--color-muted);
+  margin-bottom: 12px;
+}
+.team-grid--single .founder-bio p:last-child { margin-bottom: 0; }
+@media (max-width: 768px) {
+  .team-grid--single { flex-direction: column; }
+  .team-grid--single .founder-photo { width: 100%; height: 320px; }
+  .team-grid--single .founder-bio { padding: 24px; }
 }
 .img-placeholder {
   width: 100%;

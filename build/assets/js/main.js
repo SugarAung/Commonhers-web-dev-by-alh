@@ -181,6 +181,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* ---- Commitments Slider ---- */
+  const cSlider = document.querySelector('.commitments-slider');
+  if (cSlider) {
+    const cSlides = cSlider.querySelectorAll('.commitment-slide');
+    const cDotsContainer = cSlider.nextElementSibling; // .commitment-dots sits right after
+
+    if (cSlides.length) {
+      let cCurrent = 0;
+      let cTimer = null;
+
+      const cDots = Array.from({ length: cSlides.length }, (_, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'commitment-dot' + (i === 0 ? ' active' : '');
+        btn.setAttribute('aria-label', `Go to commitment ${i + 1}`);
+        btn.addEventListener('click', () => cGoTo(i));
+        if (cDotsContainer && cDotsContainer.classList.contains('commitment-dots')) {
+          cDotsContainer.appendChild(btn);
+        }
+        return btn;
+      });
+
+      function cGoTo(index) {
+        cSlides[cCurrent].classList.remove('active');
+        cDots[cCurrent].classList.remove('active');
+        cCurrent = (index + cSlides.length) % cSlides.length;
+        cSlides[cCurrent].classList.add('active');
+        cDots[cCurrent].classList.add('active');
+      }
+
+      cSlides[0].classList.add('active');
+      cTimer = setInterval(() => cGoTo(cCurrent + 1), 4500);
+
+      cSlider.addEventListener('mouseenter', () => clearInterval(cTimer));
+      cSlider.addEventListener('mouseleave', () => { cTimer = setInterval(() => cGoTo(cCurrent + 1), 4500); });
+
+      let cTouchX = 0;
+      cSlider.addEventListener('touchstart', e => { cTouchX = e.touches[0].clientX; }, { passive: true });
+      cSlider.addEventListener('touchend', e => {
+        const diff = cTouchX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) cGoTo(diff > 0 ? cCurrent + 1 : cCurrent - 1);
+      });
+    }
+  }
+
   /* ---- Scroll entrance animations ---- */
   const animatedEls = document.querySelectorAll('.animate, .animate-fade');
   if (animatedEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
